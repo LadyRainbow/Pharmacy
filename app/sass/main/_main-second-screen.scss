@@ -1,0 +1,140 @@
+.main {
+    .second-screen {
+        .left-section {
+            width: 100%;
+            height: 100%;
+            background: url('../img/main/bg-2.png') center no-repeat;
+            background-size: cover;
+            @include calc-width(padding-left, 60);
+            display: inline-flex;
+            align-items: center;
+            transform: translateX(0);
+            transition: all .6s 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            .supertitle {
+                position: relative;
+                font-family: 'Geometria-Bold';
+                font-size: 50px;
+                line-height: 50px;
+                @include calc-width(padding-left, 32);
+                transform: translateX(0);
+                transition: all .6s 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+                &::before {
+                    position: absolute;
+                    top: -10px;
+                    left: 0;
+                    content: '';
+                    height: 128px;
+                    width: 3px;
+                    background: -moz-linear-gradient(top, rgba(250,255,0,0.1) 0%, rgba(250,255,0,1) 35%, rgba(250,255,0,1) 65%, rgba(250,255,0,0.1) 100%);
+                    background: -ms-linear-gradient(top, rgba(250,255,0,0.1) 0%, rgba(250,255,0,1) 35%, rgba(250,255,0,1) 65%, rgba(250,255,0,0.1) 100%);
+                    background: -o-linear-gradient(top, rgba(250,255,0,0.1) 0%, rgba(250,255,0,1) 35%, rgba(250,255,0,1) 65%, rgba(250,255,0,0.1) 100%);
+                    background: -webkit-linear-gradient(top, rgba(250,255,0,0.1) 0%,rgba(250,255,0,1) 35%,rgba(250,255,0,1) 65%,rgba(250,255,0,0.1) 100%);
+                    background: linear-gradient(to bottom, rgba(250,255,0,0.1) 0%,rgba(250,255,0,1) 35%,rgba(250,255,0,1) 65%,rgba(250,255,0,0.1) 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80faff00', endColorstr='#80faff00',GradientType=0 );
+                }
+            }
+        }
+        .right-section {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            transform: translateX(100%);
+            width: 56%;
+            height: 100%;
+            overflow: hidden;
+            @include linear-gradient-negative(135deg, $lighterGreen, 0%, $deepCyan, 100%);
+            transition: all .6s 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+            @include calc-width(padding-left, 114);
+            @include calc-height(padding-top, 230);
+            .text-scroll-wrp {
+                position: relative;
+                width: 400px;
+                overflow: hidden;
+                padding-bottom: 54px;
+                z-index: 2;
+                .text-scroll {
+                    width: 420px;
+                    height: 350px;
+                    padding-right: 5px;
+                    overflow: auto;
+                    .text-wrp {
+                        opacity: .95;
+                        p {
+                            line-height: 22px;
+                            & + p {
+                                padding-top: 22px;
+                            }
+                        }
+                    }
+
+                }
+            }
+            .progress-container {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 2px;
+                background-color: $progressContainer;
+                .progress {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    background-color: $yellow;
+                    width: 0;
+                }
+            }
+        }
+        .second-screen-title-wrp {
+            position: absolute;
+            width: 100%;
+            @include calc-height(top, 130);
+            @include calc-width(left, 330);
+            opacity: 0;
+            transform: translateX(56%);
+            transition: transform .6s 0.2s cubic-bezier(0.77, 0, 0.175, 1), opacity .3s .4s;
+            p {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: opacity .5s ease;
+                &:first-child {
+                    opacity: 1;
+                }
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+            }
+            &.change-title {
+                p {
+                    &:first-child {
+                        opacity: 0;
+                    }
+                    &:nth-child(2) {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &.move-sections {
+            .left-section {
+                transform: translateX(-56%);
+                .supertitle
+                 {
+                     transform: translateX(-200%);
+                 }
+            }
+            .right-section {
+                transform: translateX(0);
+            }
+            .second-screen-title-wrp {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+    }
+
+}

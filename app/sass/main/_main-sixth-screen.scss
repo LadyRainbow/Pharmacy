@@ -1,0 +1,81 @@
+.main {
+    .sixth-screen {
+        @include linear-gradient(315deg, $deepCyan, $lighterGreen);
+        overflow: hidden;
+        .circles-wrp {
+            @include calc-width(width, 452)
+            @include calc-width(height, 452);
+            left: 50%;
+            @include calc-width(margin-left, -226);
+            @include calc-width(bottom, -232);
+            right: inherit;
+            top: inherit;
+        }
+        .sixth-screen-content {
+            position: relative;
+            z-index: 2;
+            .sixth-screen-title {
+                @extend %title;
+                display: block;
+                text-align: center;
+                @include calc-height(padding-top, 136);
+                @include calc-height(padding-bottom, 83);
+                span {
+                    color: $yellow;
+                }
+            }
+            .clients-row-1 {
+                width: 864px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 61px;
+                @include calc-height(margin-bottom, 61);
+            }
+            .clients-row-2 {
+                width: 528px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 84px;
+                @include calc-height(margin-bottom, 64);
+            }
+            .clients-item {
+                opacity: 0;
+                transform: scale(0.0);
+                transition: opacity .5s ease-out,transform .5s ease-out;
+                &:nth-child(1) {
+                    transition-delay: .15s;
+                }
+                &:nth-child(2) {
+                    transition-delay: .3s;
+                }
+                &:nth-child(3) {
+                    transition-delay: .45s;
+                }
+                &.clients-item-4 {
+                    transition-delay: .6s;
+                }
+                &.clients-item-5 {
+                    transition-delay: .75s;
+                }
+            }
+            .btn-wrp {
+                text-align: center;
+                .cost-btn {
+                    @extend %btn;
+                    height: 45px;
+                    line-height: 45px;
+                }
+            }
+            &.animated {
+                .clients-item {
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}

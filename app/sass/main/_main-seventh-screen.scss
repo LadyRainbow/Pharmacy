@@ -1,0 +1,85 @@
+.main {
+    .seventh-screen {
+        @include linear-gradient(315deg, $deepCyan, $lighterGreen);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        .circles-wrp {
+            @include calc-width(width, 452)
+            @include calc-width(height, 452);
+            top: 50%;
+            @include calc-width(margin-top, -226);
+            @include calc-width(right, -326);
+        }
+        .seventh-screen-content {
+            display: flex;
+            position: relative;
+            z-index: 2;
+            width: 1004px;
+            height: 319px;
+            margin: 0 auto;
+            .price-block {
+                height: 100%;
+                width: 528px;
+                box-shadow: 0px 20px 50px 0 rgba(0, 1, 0, 0.18);
+                background-color: rgba(255, 255, 255, .1);;
+                text-align: center;
+                margin-right: 74px;
+                .price-subtitle {
+                    @extend %subtitleMedium;
+                    padding-top: 76px;
+                    padding-bottom: 40px;
+                    color: $yellow;
+                }
+                .price {
+                    font-size: 28px;
+                    font-family: 'Geometria-Bold';
+                }
+                .price-text {
+                    padding-top: 37px;
+                    color: rgba(255, 255, 255, 0.95);
+                }
+            }
+            .right-block {
+                padding-top: 71px;
+                ul {
+                    margin-bottom: 43px;
+                    li {
+                        padding-left: 37px;
+                        position: relative;
+                        span {
+                            opacity: 0.95;
+                            line-height: 22px;
+                        }
+                        &:before {
+                            content: '\f058';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            font-family: 'Font Awesome 5 Free';
+                            font-weight: 400;
+                            color: $yellow;
+                            font-size: 24px;
+                        }
+                        & + li {
+                            margin-top: 24px;
+                        }
+                        &:nth-child(2) {
+                            transition-delay: 80ms;
+                        }
+                        &:nth-child(3) {
+                            transition-delay: 160ms;
+                        }
+                    }
+                }
+                .btn-order {
+                    @extend %btn;
+                    width: 275px;
+                    height: 45px;
+                    line-height: 45px;
+                    transition-delay: 240ms;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,203 @@
+.main {
+    .fifth-screen {
+        @include linear-gradient(315deg, $deepCyan, $lighterGreen);
+        overflow: hidden;
+        .circles-wrp {
+            @include calc-width(width, 452)
+            @include calc-width(height, 452);
+            top: 50%;
+            @include calc-height(margin-top, -226);
+            @include calc-width(left, -433);
+            right: inherit;
+        }
+        .fifth-screen-content {
+            position: relative;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            .fifth-screen-left {
+                @include calc-height(padding-top, 188);
+                @include calc-width(padding-left, 59);
+                width: 46.73%;
+                height: 100%;
+                box-shadow: 0px 20px 50px 0 rgba(0, 1, 0, 0.18);
+                .title {
+                    position: relative;
+                    @extend %title;
+                    padding-left: 60px;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 18px;
+                        left: 0px;
+                        width: 42px;
+                        height: 2px;
+                        background-color: $yellow;
+                    }
+                }
+                .decor-wrp {
+                    width: 214px;
+                    height: 190px;
+                    margin-top: 56px;
+                    margin-left: 60px;
+                    position: relative;
+                    .decor-block-1 {
+                        position: absolute;
+                        top: 22px;
+                        left: 35px;
+                        width: 17px;
+                        height: 17px;
+                        background-color: #faff00;
+                        box-shadow: 0px 20px 50px 0 rgba(0, 1, 0, 0.18);
+                        transform: rotate(45deg);
+                    }
+                    .decor-block-2 {
+                        position: absolute;
+                        top: 52px;
+                        left: 18px;
+                        width: 81px;
+                        height: 81px;
+                        background-color: #faff00;
+                        box-shadow: 0px 20px 50px 0 rgba(0, 1, 0, 0.18);
+                        transform: rotate(45deg);
+                    }
+                    .decor-block-3 {
+                        position: absolute;
+                        top: 27px;
+                        right: 27px;
+                        width: 132px;
+                        height: 132px;
+                        background-color: #ffffff;
+                        box-shadow: 0px 20px 50px 0 rgba(0, 1, 0, 0.18);
+                        transform: rotate(45deg);
+                        .decor-column-wrp {
+                            position: absolute;
+                            width: 59px;
+                            height: 65px;
+                            top: 32px;
+                            left: 36px;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: flex-end;
+                            transform: rotate(-45deg);
+                            .decor-column {
+                                width: 11px;
+                                @include linear-gradient(90deg, $deepCyan, $lighterGreen);
+                                &.decor-column-1 {
+                                    height: 27px;
+                                }
+                                &.decor-column-2 {
+                                    height: 65px;
+                                }
+                                &.decor-column-3 {
+                                    height: 38px;
+                                }
+                                &.decor-column-4 {
+                                    height: 54px;
+                                }
+                            }
+                            &.start-animation {
+                                .decor-column {
+                                    &.decor-column-1 {
+                                        animation-delay: .6s;
+                                        animation: decorColumn1 .6s linear 3;
+                                    }
+                                    &.decor-column-2 {
+                                        animation: decorColumn2 .6s linear 3;
+                                    }
+                                    &.decor-column-3 {
+                                        animation-delay: .4s;
+                                        animation: decorColumn3 .6s linear 3;
+                                    }
+                                    &.decor-column-4 {
+                                        animation-delay: .2s;
+                                        animation: decorColumn4 .6s linear 3;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            .fifth-screen-right {
+                width: 53.27%;
+                @include calc-width(padding-left, 78);
+                @include calc-height(padding-top, 125);
+                .text-scroll-wrp {
+                    position: relative;
+                    width: 474px;
+                    overflow: hidden;
+                    padding-bottom: 54px;
+                    .text-scroll {
+                        width: 494px;
+                        height: 428px;
+                        padding-right: 5px;
+                        overflow: auto;
+                        .text-wrp {
+                            p.fifth-screen-title {
+                                font-family: 'Geometria-Medium';
+                                text-transform: uppercase;
+                                color: $yellow;
+                                letter-spacing: 1.8px;
+                                line-height: 1.29;
+                                margin-bottom: 10px;
+                            }
+                            p.text {
+                                opacity: .95;
+                                line-height: 22px;
+                                & + p.fifth-screen-title {
+                                    margin-top: 40px;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                .progress-container {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    width: calc(100% - 77px);
+                    height: 2px;
+                    background-color: $progressContainer;
+                    .progress {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        background-color: $yellow;
+                        width: 0;
+                    }
+                }
+            }
+        }
+
+
+    }
+    @keyframes decorColumn1 {
+        from {height: 27px;}
+        50% {height: 65px;}
+        to {height: 27px;}
+        }
+    @keyframes decorColumn2 {
+        from {height: 65px;}
+        50% {height: 27px;}
+        to {height: 65px;}
+        }
+    @keyframes decorColumn3 {
+        from {height: 38px;}
+        25% {height: 54px;}
+        50% {height: 65px;}
+        75% {height: 27px;}
+        to {height: 38px;}
+        }
+    @keyframes decorColumn4 {
+        from {height: 54px;}
+        25% {height: 65px;}
+        50% {height: 38px;}
+        75% {height: 27px;}
+        to {height: 54px;}
+        }
+}

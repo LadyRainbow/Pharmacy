@@ -1,0 +1,42 @@
+// mixin for counting
+@mixin calc-width($property, $value) {
+    #{$property}: calc(#{$value} * 100vw / 1224);
+}
+@mixin calc-height($property, $value) {
+    #{$property}: calc(#{$value} * 100vh / 690);
+}
+// mixin for gradient
+@mixin linear-gradient($direction, $fromColor, $toColor){
+  background-color: $toColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, $direction, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient($direction, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient($direction, $fromColor, $toColor); /* FF3.6 */
+  background-image:     -ms-linear-gradient($direction, $fromColor, $toColor); /* IE10 */
+  background-image:      -o-linear-gradient($direction, $fromColor, $toColor); /* Opera 11.10+ */
+  background:         linear-gradient($direction, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+@mixin linear-gradient-negative ($direction, $fromColor, $startPoint, $toColor, $endPoint){
+  background-color: $toColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, $direction, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient($direction, $fromColor $startPoint, $toColor $endPoint); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient($direction, $fromColor $startPoint, $toColor $endPoint); /* FF3.6 */
+  background-image:     -ms-linear-gradient($direction, $fromColor $startPoint, $toColor $endPoint); /* IE10 */
+  background-image:      -o-linear-gradient($direction, $fromColor $startPoint, $toColor $endPoint); /* Opera 11.10+ */
+  background:         linear-gradient($direction, $fromColor $startPoint, $toColor $endPoint);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+$mediumPoint: 20%;
+
+// colors
+$white: #ffffff;
+$deepCyan: #007d73;
+$lighterGreen: #00a73f;
+$green: #00a047;
+$darkBlue: #04455d;
+$dark: #161616;
+$brown: #2a2a2a;
+$yellow: #faff00;
+$yellowHover: #e4e900;
+$progressContainer: #66be9b;

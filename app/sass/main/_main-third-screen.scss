@@ -1,0 +1,103 @@
+.main {
+    .third-screen {
+        display: flex;
+        font-size: 0;
+        .left-section {
+            width: 55.88%;
+            height: 100%;
+            @include linear-gradient-negative(315deg, $deepCyan, 0%, $lighterGreen, 100%);
+            @include calc-width(padding-left, 119);
+            @include calc-height(padding-top, 128);
+            .text-block {
+                font-size: 14px;
+                width: 428px;
+                .text {
+                    margin-top: 30px;
+                    margin-bottom: 31px;
+                    line-height: 1.57;
+                    opacity: .95;
+                }
+                .title-list {
+                    line-height: 1.57;
+                    letter-spacing: 1.8px;
+                    color: $yellow;
+                    text-transform: uppercase;
+                }
+                ul.statistics-list {
+                    margin-top: 10px;
+                    margin-bottom: 13px;
+                    li {
+                        position: relative;
+                        padding-left: 15px;
+                        line-height: 28px;
+                        span {
+                            opacity: .95;
+                        }
+                        &::before {
+                            position: absolute;
+                            top: calc(50% - 1px);
+                            left: 0;
+                            content: "";
+                            width: 4px;
+                            height: 4px;
+                            border-radius: 50%;
+                            background-color: $yellow;
+                        }
+                    }
+                    & + p {
+                        opacity: .95;
+                    }
+                }
+                .totals {
+                    position: relative;
+                    margin-top: 44px;
+                    opacity: .95;
+                    line-height: 22px;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: -20px;
+                        width: 133px;
+                        height: 2px;
+                        background-color: $yellow;
+                    }
+                }
+                span.yellow {
+                    color: $yellow;
+                    font-family: 'Geometria-Bold';
+                }
+            }
+        }
+        .right-section {
+            position: relative;
+            width: 44.12%;
+            height: 100%;
+            background: url('../img/main/section-3.png') center no-repeat;
+            background-size: cover;
+            .right-section-gradient {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                @include linear-gradient(305deg, $green, $deepCyan);
+                opacity: 0.55;
+            }
+            .circles-wrp {
+                position: absolute;
+                top: calc(50% - 41px);
+                left: calc(50% - 41px);
+                width: 82px;
+                height: 82px;
+                z-index: 1;
+                .circles, .circles2, .circles3 {
+                    &::after,
+                    &::before {
+                        animation-timing-function: linear;
+                    }
+                }
+            }
+        }
+    }
+}

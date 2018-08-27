@@ -1,0 +1,54 @@
+.main {
+    .ninth-screen {
+        @include linear-gradient(315deg, $deepCyan, $lighterGreen);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        .circles-wrp {
+            @include calc-width(width, 452)
+            @include calc-width(height, 452);
+            top: 50%;
+            @include calc-width(margin-top, -226);
+            @include calc-width(left, -433);
+            right: inherit;
+        }
+        .ninth-screen-content {
+            position: relative;
+            width: 984px;
+            height: 295px;
+            margin: 0 auto;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .left-block {
+                padding-top: 8px;
+                .ninth-screen-title {
+                    @extend %title;
+                }
+                .ninth-screen-subtitle {
+                    font-family: 'Geometria-Bold';
+                    font-size: 20px;
+                    color: $yellow;
+                }
+                .ninth-screen-text {
+                    opacity: 0.95;
+                    margin-top: 9px;
+                    & + .wrp-for-animation {
+                        margin-top: 34px;
+                    }
+                }
+                .block-for-next-animation {
+                    margin-top: 56px;
+                }
+            }
+            .right-block {
+                width: 530px;
+                height: 100%;
+            }
+
+
+
+        }
+    }
+}
