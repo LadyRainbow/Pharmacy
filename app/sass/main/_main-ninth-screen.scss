@@ -45,10 +45,21 @@
             .right-block {
                 width: 530px;
                 height: 100%;
+                background-color: rgba(255, 255, 255, 0.1);
+                box-shadow: 0px 20px 50px 0 rgba(0, 1, 0, 0.18);
+                padding: 49px 83px 49px 54px;
+                border-left: 3px solid $yellow;
+                p {
+                    line-height: 22px;
+                    margin-bottom: 25px;
+                    opacity: .95;
+                    &:nth-child(1) {
+                        font-family: 'Geometria-Bold';
+                        font-size: 20px;
+                        opacity: 1;
+                    }
+                }
             }
-
-
-
         }
     }
 }

@@ -23,10 +23,6 @@ $(document).ready(function () {
     var sixthScreenHeightOuter = $('.sixth-screen').outerHeight();
 
     var $footer = $('footer');
-    // var footerScrollTop = $('footer').offset().top;
-
-    // animation for page about Citizens
-    // $firstContentCitizens.addClass('loaded');
 
     // variable for header fixed
     var $btnHeader = $('.btn-header');
@@ -119,7 +115,7 @@ $(document).ready(function () {
                 // show arrow
                 $arrowToNextBlock.fadeIn();
             }
-            else if ($(this).scrollTop() >= $('#ninth-screen').offset().top && $(this).scrollTop() < $('#tenth-screen').offset().top) {
+            else if ($(this).scrollTop() >= $('#ninth-screen').offset().top) {
                 // show arrow
                 $arrowToNextBlock.fadeIn();
             }
@@ -469,7 +465,36 @@ $(document).ready(function () {
         });
     })();
 
+    var $textScrollTenth = $('.tenth-screen .text-scroll');
+    var textScrollTenthHeight = $('#text-part-1').height();
+    var isAnimating  = false;
 
+    $textScrollTenth.scroll(function () {
+        console.log($(this).scrollTop());
+        if ($(this).scrollTop() > 1 && $(this).scrollTop() < textScrollTenthHeight/3 && isAnimating  == false) {
+            isAnimating  = true;
+            var destination = $('#text-part-2').position().top + 50;
+            $textScrollTenth.animate({
+                scrollTop: destination
+            }, 800, 'easeOutQuart', function(){
+                // show arrow
+                $arrowToNextBlock.fadeOut();
+                // change value of flag to the original to allow next action
+                isAnimating  = false;
+            });
+        };
+        if ($(this).scrollTop() < $('#text-part-2').height() - 10 && $(this).scrollTop() > textScrollTenthHeight/2 && isAnimating  == false) {
+            isAnimating  = true;
+            $textScrollTenth.animate({
+                scrollTop: 0
+            }, 800, 'easeOutQuart', function(){
+                // hide arrow
+                $arrowToNextBlock.fadeIn();
+                // change value of flag to the original to allow next action
+                isAnimating  = false;
+            });
+        };
+    });
 
     // PROGRESS BAR, GRADIENT CHANGING & TITLES CHANGING ON SCROLL IN THE INNER BLOCK OF THE SECOND SCREEN
     $textScroll.scroll(function () {
@@ -479,7 +504,6 @@ $(document).ready(function () {
         } else {
             $titleWrp.removeClass('change-title');
         };
-        // console.log($('.start-changing-title').position().top);
         // PROGRESS BAR
         // calculate the width of the progress bar during a scroll:
         // getting maximum scroll top, this will be equal to 100%
@@ -516,11 +540,6 @@ $(document).ready(function () {
         $progressLineFifth.width(percent + '%');
     });
 
-    // var $bottomShowHideBtn = $('.bottom-title span');
-    // var $hideBottomBtn = $('.hide-list');
-    // var $bottomContent = $('.bottom-content');
-    // var $bottomSubstrate = $('.bottom-substrate');
-
     // SHOW/HIDE BOTTOM OF THE EIGHTTH SCREEN
     $hideBottomBtn.click(function () {
         if ($bottomContent.hasClass('show-bottom')) {
@@ -541,73 +560,7 @@ $(document).ready(function () {
 
 
 
-    //
-    // (function () {
-    //     $(window).scroll(function () {
-    //         if($(this).scrollTop() >= firstScreenHeight/2) {
-    //             $secondScreenMain.addClass('loaded');
-    //         };
-    //         if($(this).scrollTop() >= firstScreenHeight + secondScreenHeight/2) {
-    //             $thirdContentCitizens.addClass('loaded');
-    //         };
-    //         if($(this).scrollTop() >= firstScreenHeight + secondScreenHeight + thirdScreenHeight/2) {
-    //             $fourthContentCitizens.addClass('loaded');
-    //         };
-    //         if($(this).scrollTop() >= firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight/2)  {
-    //             $fifthContentCitizensImg.addClass('loaded');
-    //             $fifthContentCitizensText.addClass('loaded');
-    //         };
-    //         if($(this).scrollTop() >= firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight/2)  {
-    //             $sixthContentCitizens.addClass('loaded');
-    //         };
-    //         if($(this).scrollTop() >= (footerScrollTop - firstScreenHeight))  {
-    //             $footer.addClass('loaded');
-    //         };
-    //     });
-    // })();
 
-    // show/hide fixed header mob
-    // (function () {
-    //     $(window).scroll(function () {
-    //         if($(this).scrollTop() >= firstScreenHeightMob) {
-    //             $headerFixed.fadeIn();
-    //         } else {
-    //             $headerFixed.fadeOut();
-    //         }
-    //     })
-    // })();
-
-    // show/hide pop-up
-    // (function () {
-    //     $btnOrderConsultation.click(function () {
-    //         $desctopApp.addClass('open-pop-up');
-    //     });
-    //     $popUpCloseBtn.click(function () {
-    //         $desctopApp.removeClass('open-pop-up');
-    //     });
-    // })();
-
-    // show/hide pop-up mobile
-    // (function () {
-    //     $btnOrderConsultationMob.click(function () {
-    //         $mobileApp.addClass('open-pop-up');
-    //     });
-    //     $popUpCloseBtnMob.click(function () {
-    //         $mobileApp.removeClass('open-pop-up');
-    //     });
-    // })();
-
-    // scroll to the second page
-    // (function () {
-    //     $navigationLink.click(function (event) {
-    //         var elementClick = $(this).attr("href");
-    //         var destination = $(elementClick).offset().top;
-    //         jQuery("html:not(:animated),body:not(:animated)").animate({
-    //           scrollTop: destination
-    //       }, 1500);
-    //         return false;
-    //     });
-    // })();
 
 
 });
