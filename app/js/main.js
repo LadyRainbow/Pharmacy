@@ -64,6 +64,14 @@ $(document).ready(function () {
     var $eightthScreen = $('.eightth-screen');
     var $gradient = $('.background-layer-gradient');
 
+    // variables for tenth screen FOM-elements
+    var $tenthScreen = $('.tenth-screen');
+    var $textScrollTenth = $('.tenth-screen .text-scroll');
+    var textScrollTenthHeight = $('#text-part-1').height();
+    var $tenthScreenList_1 = $('.text-container-1 .container-list li');
+    var $tenthScreenList_2 = $('.text-container-2 .container-list li');
+    var isAnimating  = false;
+
 
     // Animation for appearance of first screen elements
     (function () {
@@ -85,15 +93,77 @@ $(document).ready(function () {
     $('.mobile-screen').beforeAfter();
 
     // quick scroll to the next section due click on the arrow
-    $arrowToNextBlock.click(function() {
-        event.preventDefault();
-        var elementClick = $(this).attr("href");
-        // var elementClick = $(this).hash;
-        var nextSectionTop = $(elementClick).offset().top + 10;
-		$('html, body').animate({
-            scrollTop: nextSectionTop
-        }, 800, 'easeOutQuart');
-	});
+    $arrowToNextBlock.click(function (e) {
+        e.preventDefault();
+        $.scrollify.next();
+    });
+
+
+    $.scrollify ({
+              section : "section",
+              standardScrollElements: '.text-scroll',
+              scrollSpeed: 800,
+              after: function (index, sections) {
+                    var currentPage = index + 1;
+
+                    // 2 screen animation
+                    if (currentPage == 2) {
+                        $secondScreen.addClass('move-sections');
+                    };
+                    // 3 screen animation
+                    if (currentPage == 3) {
+                        $('.third-screen .wrp-for-animation').addClass('show-wrapp');
+                        $firstScreenBtn.addClass('loaded');
+                        setTimeout(function() {
+                              $('.third-screen .wrp-for-animation').addClass("hideWrapp");
+                          }, 800);
+                    };
+                    // 4 screen animation
+                    if (currentPage == 4) {
+                        $('.switch-cross').addClass('show-up');
+                    };
+                    // 5 screen animation
+                    if (currentPage == 5) {
+                        $decorColumn.addClass('start-animation');
+                        $('.fifth-screen .wrp-for-animation').addClass('show-wrapp');
+                        setTimeout(function() {
+                            $('.fifth-screen .wrp-for-animation').addClass("hideWrapp");
+                        },800);
+                    };
+                    // 6 screen animation
+                    if (currentPage == 6) {
+                        $scaleWrp.addClass('animated');
+                    };
+                    // 7 screen animation
+                    if (currentPage == 7) {
+                        $seventhScreenBtnOrder.addClass('show-up');
+                        $list.addClass('show-up');
+                    };
+                    // 8 screen animation
+                    if (currentPage == 8) {
+                        $eightthScreen.addClass('loaded');
+                        $gradient.addClass('new-gradient');
+                        $bottomSubstrate.removeClass('hide-bottom-content');
+                        $bottomContent.removeClass('hide-bottom-content');
+                    };
+                    // 9 screen animation
+                    if (currentPage == 9) {
+                        $('.ninth-screen .wrp-for-animation').addClass('show-wrapp');
+                        setTimeout(function() {
+                            $('.ninth-screen .wrp-for-animation').addClass("hideWrapp");
+                        },800);
+                    };
+                    // 10 screen animation
+                    if (currentPage == 10) {
+                        $arrowToNextBlock.attr('href', '#text-part-2');
+                        $tenthScreenList_1.addClass('show-up');
+                    };
+
+                },
+
+          });
+
+
 
     // quick scroll to the next section during scrolling & concomitant animations
     (function () {
@@ -123,378 +193,12 @@ $(document).ready(function () {
                 // hide arrow
                 $arrowToNextBlock.fadeOut();
             };
-
-            // FIRST SCREEN, SCROLL DOWN
-            // go to the second section
-            if ($(this).scrollTop() > 0  && $(this).scrollTop() <= (firstScreenHeight/3) && isAnimating  == false) {
-                console.log(firstScreenHeight + ' firstScreenHeight');
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the next screen to the arrow href
-                $arrowToNextBlock.attr("href", "#third-screen");
-                // setting value for scroll
-                var destination = $('#second-screen').offset().top;
-                // smooth transition to the second section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // doing animation for elements on the current section after scroll to the second section
-                    $secondScreen.addClass('move-sections');
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // SECOND SCREEN, SCROLL UP
-            // go back to the first section
-            if ($(this).scrollTop() < ($('#second-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight/3) && isAnimating  == false) {
-
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // return to the start of page
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // SECOND SCREEN, SCROLL DOWN
-            // go to the third section
-            if ($(this).scrollTop() > ($('#second-screen').offset().top)  && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight/3) && isAnimating  == false) {
-                console.log(secondScreenHeight + ' secondScreenHeight');
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the next screen to the arrow href
-                $arrowToNextBlock.attr("href", "#fourth-screen");
-                // setting value for scroll
-                var destination = $('#third-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    $('.third-screen .wrp-for-animation').addClass('show-wrapp');
-                    $firstScreenBtn.addClass('loaded');
-                    setTimeout(function() {
-                      $('.third-screen .wrp-for-animation').addClass("hideWrapp");
-                  },800);
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // THIRD SCREEN, SCROLL UP
-            // go back to the second section
-            if ($(this).scrollTop() < ($('#third-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#third-screen");
-                // setting value for scroll
-                var destination = $('#second-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // THIRD SCREEN, SCROLL DOWN
-            // go to the fourth section
-            if ($(this).scrollTop() > ($('#third-screen').offset().top)  && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight + thirdScreenHeight/3) && isAnimating  == false) {
-                console.log(thirdScreenHeight + ' thirdScreenHeight');
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#fifth-screen");
-                // setting value for scroll
-                var destination = $('#fourth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    $('.switch-cross').addClass('show-up');
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // FOURTH SCREEN, SCROLL UP
-            // go back to the third section
-            if ($(this).scrollTop() < ($('#fourth-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight + thirdScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#fourth-screen");
-                // setting value for scroll
-                var destination = $('#third-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // FOURTH SCREEN, SCROLL DOWN
-            // go to the fifth section
-            if ($(this).scrollTop() > ($('#fourth-screen').offset().top) && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight/3) && isAnimating  == false) {
-                console.log(fourthScreenHeight + ' fourthScreenHeight');
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#sixth-screen");
-                // setting value for scroll
-                var destination = $('#fifth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    $decorColumn.addClass('start-animation');
-                    $('.fifth-screen .wrp-for-animation').addClass('show-wrapp');
-                    $firstScreenBtn.addClass('loaded');
-                    setTimeout(function() {
-                      $('.fifth-screen .wrp-for-animation').addClass("hideWrapp");
-                  },800);
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false;
-                });
-            };
-            // FIFTH SCREEN, SCROLL UP
-            // go back to the fourth section
-            if ($(this).scrollTop() < ($('#fifth-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight/2) && isAnimating  == false) {
-
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#fifth-screen");
-                // setting value for scroll
-                var destination = $('#fourth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // FIFTH SCREEN, SCROLL DOWN
-            // go to the sixth section
-            if ($(this).scrollTop() > ($('#fifth-screen').offset().top)  && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight/3) && isAnimating  == false) {
-                console.log(fifthScreenHeight + ' fifthScreenHeight');
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#seventh-screen");
-                // setting value for scroll
-                var destination = $('#sixth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    $scaleWrp.addClass('animated');
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // SIXTH SCREEN, SCROLL UP
-            // go back to the fifth section
-            if ($(this).scrollTop() < ($('#sixth-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#sixth-screen");
-                // setting value for scroll
-                var destination = $('#fifth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // SIXTH SCREEN, SCROLL DOWN
-            // go to the seventh section
-            if ($(this).scrollTop() > ($('#sixth-screen').offset().top)  && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight/3) && isAnimating  == false) {
-                console.log(sixthScreenHeight + ' sixthScreenHeight');
-
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#eightth-screen");
-                // setting value for scroll
-                var destination = $('#seventh-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    $seventhScreenBtnOrder.addClass('show-up');
-                    $list.addClass('show-up');
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // SEVENTH SCREEN, SCROLL UP
-            // go back to the sixth section
-            if ($(this).scrollTop() < ($('#seventh-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight/3) && isAnimating  == false) {
-                console.log($(this).scrollTop() + ' scrollTop seventh-screen - look it 2');
-                console.log(firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight/2);
-                console.log($('#seventh-screen').offset().top - 10 + '#seventh-screen.offset().top');
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#seventh-screen");
-                // setting value for scroll
-                var destination = $('#sixth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false
-                });
-            };
-            // SEVENTH SCREEN, SCROLL DOWN
-            // go to the eightth section
-            if ($(this).scrollTop() > ($('#seventh-screen').offset().top)  && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight + seventhScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                // $arrowToNextBlock.fadeOut();
-                console.log(' seventhScreenHeight');
-                // setting value for scroll
-                var destination = $('#eightth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    $eightthScreen.addClass('loaded');
-                    $gradient.addClass('new-gradient');
-                    $bottomSubstrate.removeClass('hide-bottom-content');
-                    $bottomContent.removeClass('hide-bottom-content');
-
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false;
-                });
-            };
-            // EIGHTTH SCREEN, SCROLL UP
-            // go back to the seventh section
-            if ($(this).scrollTop() < ($('#eightth-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight + seventhScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#eightth-screen");
-                // setting value for scroll
-                var destination = $('#seventh-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // $arrowToNextBlock.fadeIn();
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false;
-                });
-            };
-            // EIGHTTH SCREEN, SCROLL DOWN
-            // go to the ninth section
-            if ($(this).scrollTop() > ($('#eightth-screen').offset().top)  && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight + seventhScreenHeight + eightthScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#tenth-screen");
-                // setting value for scroll
-                var destination = $('#ninth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    $('.ninth-screen .wrp-for-animation').addClass('show-wrapp');
-                    setTimeout(function() {
-                      $('.ninth-screen .wrp-for-animation').addClass("hideWrapp");
-                  },800);
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false;
-                });
-            };
-            // NINTH SCREEN, SCROLL UP
-            // go back to the eightth section
-            if ($(this).scrollTop() < ($('#ninth-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight + seventhScreenHeight + eightthScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting value for scroll
-                var destination = $('#eightth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false;
-                });
-            };
-            // NINTH SCREEN, SCROLL DOWN
-            // go to the tenth section
-            if ($(this).scrollTop() > ($('#ninth-screen').offset().top)  && $(this).scrollTop() <= (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight + seventhScreenHeight + eightthScreenHeight + ninthScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting value for scroll
-                var destination = $('#tenth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false;
-                });
-            };
-            // TENTH SCREEN, SCROLL UP
-            // go back to the ninth section
-            if ($(this).scrollTop() < ($('#tenth-screen').offset().top)  && $(this).scrollTop() > (firstScreenHeight + secondScreenHeight + thirdScreenHeight + fourthScreenHeight + fifthScreenHeight + sixthScreenHeight + seventhScreenHeight + eightthScreenHeight + ninthScreenHeight/3) && isAnimating  == false) {
-                // change value of flag to prevent re-execution of the current action until it is completed
-                isAnimating  = true;
-                // setting ID of the previous screen to the arrow href
-                $arrowToNextBlock.attr("href", "#tenth-screen");
-                // setting value for scroll
-                var destination = $('#ninth-screen').offset().top;
-                // smooth transition to the third section ('easeOutQuart' — name of smooth animation)
-                $('html, body').animate({
-                    scrollTop: destination
-                }, 800, 'easeOutQuart', function(){
-                    // change value of flag to the original to allow next action
-                    isAnimating  = false;
-                });
-            };
         });
     })();
 
-    var $textScrollTenth = $('.tenth-screen .text-scroll');
-    var textScrollTenthHeight = $('#text-part-1').height();
-    var isAnimating  = false;
 
-    $textScrollTenth.scroll(function () {
-        console.log($(this).scrollTop());
-        if ($(this).scrollTop() > 1 && $(this).scrollTop() < textScrollTenthHeight/3 && isAnimating  == false) {
-            isAnimating  = true;
-            var destination = $('#text-part-2').position().top + 50;
-            $textScrollTenth.animate({
-                scrollTop: destination
-            }, 800, 'easeOutQuart', function(){
-                // show arrow
-                $arrowToNextBlock.fadeOut();
-                // change value of flag to the original to allow next action
-                isAnimating  = false;
-            });
-        };
-        if ($(this).scrollTop() < $('#text-part-2').height() - 10 && $(this).scrollTop() > textScrollTenthHeight/2 && isAnimating  == false) {
-            isAnimating  = true;
-            $textScrollTenth.animate({
-                scrollTop: 0
-            }, 800, 'easeOutQuart', function(){
-                // hide arrow
-                $arrowToNextBlock.fadeIn();
-                // change value of flag to the original to allow next action
-                isAnimating  = false;
-            });
-        };
-    });
+
+
 
     // PROGRESS BAR, GRADIENT CHANGING & TITLES CHANGING ON SCROLL IN THE INNER BLOCK OF THE SECOND SCREEN
     $textScroll.scroll(function () {
@@ -529,15 +233,20 @@ $(document).ready(function () {
         });
     });
     // PROGRESS BAR ON SCROLL IN THE INNER BLOCK OF THE FIFTH SCREEN
-    $textScrollFifth.scroll(function () {
+    $textScrollFifth.scroll(function (e) {
         // PROGRESS BAR
         // calculate the width of the progress bar during a scroll:
         // getting maximum scroll top, this will be equal to 100%
+        var percentScroll = $textInnerFifth.height() - $textScrollFifth.height();
         var maxScroll = $textInnerFifth.height() - $textScrollFifth.height();
         // taking a percent of the current scroll using the proportion
         var percent = $textScrollFifth.scrollTop() * 100 / maxScroll;
         // substituting received percent to width of progress line
         $progressLineFifth.width(percent + '%');
+        if ($textScrollFifth.scrollTop() == maxScroll) {
+             e.preventDefault();
+            $.scrollify.next();
+        };
     });
 
     // SHOW/HIDE BOTTOM OF THE EIGHTTH SCREEN
@@ -555,6 +264,49 @@ $(document).ready(function () {
             $bottomContent.addClass('show-bottom')
             $bottomSubstrate.addClass('show-bottom')
         }
+    });
+
+    $textScrollTenth.scroll(function () {
+        var maxHeight = $('.text-container').height()*1.5;
+        var deltaEndPercentColor = 50;
+        // taking a percent of the gradient scroll using the proportion
+        var percentGradient = $textScrollTenth.scrollTop() * deltaEndPercentColor/maxHeight;
+        // set the resulting value into css
+        $('.tenth-screen').css({
+             'background-color': '#007d73', /* Fallback Color */
+              'background-image': '-webkit-gradient(linear, 135deg, from(#00a73f), to(#007d73))', /* Saf4+, Chrome */
+              'background-image': '-webkit-linear-gradient(135deg, #00a73f ' + (0 - percentGradient) + '%, #007d73 ' + (100 - percentGradient) + '%', /* Chrome 10+, Saf5.1+, iOS 5+ */
+              'background-image':    '-moz-linear-gradient(135deg, #00a73f ' + (0 - percentGradient) + '%, #007d73 ' + (100 - percentGradient) + '%', /* FF3.6 */
+             'background-image':     '-ms-linear-gradient(135deg, #00a73f ' + (0 - percentGradient) + '%, #007d73 ' + (100 - percentGradient) + '%', /* IE10 */
+             'background-image':     '-o-linear-gradient(135deg, #00a73f ' + (0 - percentGradient) + '%, #007d73 ' + (100 - percentGradient) + '%', /* Opera 11.10+ */
+              'background':        'linear-gradient(135deg, #00a73f ' + (0 - percentGradient) + '%, #007d73 ' + (100 - percentGradient) + '%',
+        });
+        if ($(this).scrollTop() > 1 && $(this).scrollTop() < textScrollTenthHeight/3 && isAnimating  == false) {
+            isAnimating  = true;
+            var destination = $('#text-part-2').position().top + 50;
+            $textScrollTenth.animate({
+                scrollTop: destination
+            }, 800, 'easeOutQuart', function(){
+                $tenthScreenList_2.addClass('show-up');
+                // $tenthScreen.addClass('new-gradient');
+                // show arrow
+                $arrowToNextBlock.fadeOut();
+                // change value of flag to the original to allow next action
+                isAnimating  = false;
+            });
+        };
+        if ($(this).scrollTop() < $('#text-part-2').height() - 10 && $(this).scrollTop() > textScrollTenthHeight/2 && isAnimating  == false) {
+            isAnimating  = true;
+            $textScrollTenth.animate({
+                scrollTop: 0
+            }, 800, 'easeOutQuart', function(){
+                // $tenthScreen.removeClass('new-gradient');
+                // hide arrow
+                $arrowToNextBlock.fadeIn();
+                // change value of flag to the original to allow next action
+                isAnimating  = false;
+            });
+        };
     });
 
 

@@ -1,9 +1,10 @@
 .main {
     .tenth-screen {
-        @include linear-gradient(315deg, $deepCyan, $lighterGreen);
+        @include linear-gradient-negative(315deg, $deepCyan, 0,  $lighterGreen, 100%);
         overflow: hidden;
         display: flex;
         align-items: center;
+        transition: all 3s;
         .circles-wrp {
             @include calc-width(width, 452)
             @include calc-width(height, 452);
@@ -34,8 +35,11 @@
                         @extend %title;
                         margin-bottom: 32px;
                     }
-                    ul {
+                    ul.container-list {
                         li {
+                            transform: translateY(1.875rem);
+                            opacity: 0;
+                            transition: transform 1000ms cubic-bezier(0.23, 1, 0.32, 1), opacity 1000ms cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 1000ms cubic-bezier(0.23, 1, 0.32, 1);
                             padding-left: 40px;
                             position: relative;
                             &:before {
@@ -61,10 +65,23 @@
                                 padding-bottom: 3px;
 
                             }
+                            &.show-up {
+                                transform: none;
+                                opacity: 1;
+                            }
+                            &:nth-child(2) {
+                                transition-delay: 80ms;
+                            }
+                            &:nth-child(3) {
+                                transition-delay: 160ms;
+                            }
+                            &:nth-child(4) {
+                                transition-delay: 240ms;
+                            }
                         }
                     }
                     &.text-container-2 {
-                        ul {
+                        ul.container-list {
                             margin-bottom: 79px;
                             li {
                                 &:before {
@@ -92,6 +109,40 @@
                                     &:before {
                                         content: '\f0e0';
                                     }
+                                }
+                            }
+                        }
+                        ul.acc-list {
+                            display: flex;
+
+                            li {
+                                overflow: hidden;
+                                a {
+                                    span {
+                                        position: relative;
+                                        display: inline-block;
+                                        transition: transform 0.3s;
+                                        font-size: 12px;
+                                        font-family: 'Geometria-Medium';
+                                        color: $yellow;
+                                        text-transform: uppercase;
+                                        letter-spacing: 1.6px;
+                                        &:before {
+                                            position: absolute;
+                                            top: 100%;
+                                            content: attr(data-hover);
+                                            font-family: 'Geometria-Bold';
+                                            transform: translate3d(0,0,0);
+                                        }
+                                    }
+                                    &:hover {
+                                        span {
+                                            transform: translateY(-104%);
+                                        }
+                                    }
+                                }
+                                & + li {
+                                    margin-left: 28px;
                                 }
                             }
                         }

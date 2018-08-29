@@ -29,8 +29,12 @@
         @include linear-gradient(315deg, $deepCyan, $lighterGreen);
         @include calc-width(padding-left, 60);
         @include calc-width(padding-right, 60);
-        @include calc-height(padding-top, 59);
-        @include calc-height(padding-bottom, 59);
+        .first-screen-content {
+            width: 100%;
+            height: 100%;
+            @include calc-height(padding-top, 59);
+            @include calc-height(padding-bottom, 59);
+        }
         .first-screen-substrate {
             position: relative;
             width: 100%;
