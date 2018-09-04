@@ -16,16 +16,39 @@ const config = {
             placeholders: {
             }
         },
-        // headerMob: {
-        //     copies: 1,
-        //     file: 'header\\headerMob.html',
-        //     placeholders: {}
-        // },
-        // pagesContentMob: {
-        //     file: 'main\\firstBankrotMob.html',
-        //     placeholders: {
-        //     }
-        // }
+        popUp: {
+            file: 'popup\\popUp.html',
+            placeholders: {
+                popUpOrder: {
+                    file: 'popup\\popUpOrder.html',
+                    placeholders: {}
+                },
+            }
+        },
+        menuMob: {
+            copies: 1,
+            file: 'menu\\menuMob.html',
+            placeholders: {}
+        },
+        headerMob: {
+            copies: 1,
+            file: 'header\\headerMob.html',
+            placeholders: {}
+        },
+        pagesContentMob: {
+            file: 'main\\mainMob.html',
+            placeholders: {
+            }
+        },
+        popUpMob: {
+            file: 'popup\\popUpMob.html',
+            placeholders: {
+                popUpOrder: {
+                    file: 'popup\\popUpOrderMob.html',
+                    placeholders: {}
+                },
+            }
+        },
     }
 };
 module.exports = config;

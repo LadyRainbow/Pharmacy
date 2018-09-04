@@ -1,0 +1,67 @@
+.header-mob {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 5vw;
+    padding-top: 15px;
+    z-index: 12;
+    .logo-mob {
+        position: relative;
+        display: inline-block;
+        padding-left: 9px;
+        font-size: 20px;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        &:before {
+            content: url('../img/header/header-decor.png');
+            position: absolute;
+            top: -6px;
+            left: 0;
+            width: 23px;
+            height: 34px;
+            z-index: 1;
+        }
+    }
+    .header-phone-mob {
+        letter-spacing: 0.7px;
+        font-size: 12px;
+        font-family: 'Geometria-Medium';
+    }
+    .menu-mob-btn {
+        width: 38px;
+        height: 9px;
+        position: relative;
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            transition: all .3s;
+        }
+        &::before {
+            top: 0;
+        }
+        &::after {
+            bottom: 0;
+        }
+        &.menu-mob-close {
+            &::before, &::after {
+                width: 70%;
+            }
+            &::before {
+                top: 3px;
+                transform: rotate(45deg);
+            }
+            &::after {
+                bottom: 3px;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}

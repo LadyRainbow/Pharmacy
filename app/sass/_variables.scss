@@ -5,6 +5,9 @@
 @mixin calc-height($property, $value) {
     #{$property}: calc(#{$value} * 100vh / 690);
 }
+@mixin calc-heightMob($property, $value) {
+    #{$property}: calc(#{$value} * 100vh / 497);
+}
 // mixin for gradient
 @mixin linear-gradient($direction, $fromColor, $toColor){
   background-color: $toColor; /* Fallback Color */

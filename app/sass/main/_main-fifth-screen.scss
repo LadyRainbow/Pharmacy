@@ -99,19 +99,19 @@
                             &.start-animation {
                                 .decor-column {
                                     &.decor-column-1 {
-                                        animation-delay: .6s;
-                                        animation: decorColumn1 .6s linear 3;
+                                        animation-delay: .4s;
+                                        animation: decorColumn1 .4s linear  2;
                                     }
                                     &.decor-column-2 {
-                                        animation: decorColumn2 .6s linear 3;
+                                        animation: decorColumn2 .4s linear 2;
                                     }
                                     &.decor-column-3 {
-                                        animation-delay: .4s;
-                                        animation: decorColumn3 .6s linear 3;
+                                        animation-delay: .25s;
+                                        animation: decorColumn3 .4s linear  2;
                                     }
                                     &.decor-column-4 {
-                                        animation-delay: .2s;
-                                        animation: decorColumn4 .6s linear 3;
+                                        animation-delay: .15s;
+                                        animation: decorColumn4 .4s linear  2;
                                     }
                                 }
                             }
@@ -121,9 +121,10 @@
                 }
             }
             .fifth-screen-right {
+                display: flex;
+                align-items: center;
                 width: 53.27%;
                 @include calc-width(padding-left, 78);
-                @include calc-height(padding-top, 125);
                 .text-scroll-wrp {
                     position: relative;
                     width: 474px;

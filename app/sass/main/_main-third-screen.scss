@@ -1,5 +1,6 @@
 .main {
     .third-screen {
+        position: relative;
         display: flex;
         font-size: 0;
         .left-section {
@@ -70,22 +71,46 @@
             }
         }
         .right-section {
-            position: relative;
+            position: absolute;
+            top: 0;
+            right: 0;
             width: 44.12%;
             height: 100%;
-            background: url('../img/main/section-3.png') center no-repeat;
-            background-size: cover;
-            .right-section-gradient {
+            transition: width .3s ease-in;
+            .video-wrp {
                 position: absolute;
                 top: 0;
-                left: 0;
+                right: 0;
                 width: 100%;
                 height: 100%;
-                @include linear-gradient(305deg, $green, $deepCyan);
-                opacity: 0.55;
+                #play {
+                    width: 100%;
+                    height: 100%;
+                }
+                .poster-wrp {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 1;
+                    transition: opacity .3s .3s ease-in;
+                    .poster, .right-section-gradient {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .right-section-gradient {
+                        @include linear-gradient(305deg, $green, $deepCyan);
+                        opacity: 0.55;
+                    }
+                }
             }
             .circles-wrp {
                 position: absolute;
+                display: block;
                 top: calc(50% - 41px);
                 left: calc(50% - 41px);
                 width: 82px;
@@ -96,6 +121,48 @@
                     &::before {
                         animation-timing-function: linear;
                     }
+                }
+            }
+            .video-btn {
+                position: absolute;
+                display: block;
+                top: calc(50% - 30px);
+                left: calc(50% - 30px);
+                width: 60px;
+                height: 60px;
+                background-color: $yellow;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 2;
+                &::after {
+                    content: '\f04b';
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    color: $deepCyan;
+                    position: absolute;
+                    top: calc(50% - 7px);
+                    left: calc(50% - 5px);
+                    font-size: 16px;
+                }
+                &:hover {
+                    background-color: $yellowHover;
+                }
+            }
+            &.open-video {
+                width: 75%;
+                .video-wrp {
+                    .poster-wrp {
+                        opacity: 0;
+                        .poster {
+                            display: none;
+                        }
+                    }
+                }
+                .circles-wrp {
+                    display: none;
+                }
+                .video-btn {
+                    display: none;
                 }
             }
         }

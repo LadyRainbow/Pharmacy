@@ -15,11 +15,12 @@
           posX = dragElement.offset().left + dragWidth - startX,
           containerOffset = container.offset().left,
           containerWidth = container.outerWidth();
-          console.log(dragWidth);
+          console.log(posX + ' posX');
 
       // Set limits
       minLeft = containerOffset + 10;
       maxLeft = containerOffset + containerWidth - dragWidth - 10;
+       console.log(minLeft + ' minLeft');
 
       // Calculate the dragging distance on mousemove.
       dragElement.parents().on("mousemove.ba-events touchmove.ba-events", function(e) {

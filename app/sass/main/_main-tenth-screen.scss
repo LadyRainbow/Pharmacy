@@ -1,5 +1,6 @@
 .main {
     .tenth-screen {
+        position: relative;
         @include linear-gradient-negative(315deg, $deepCyan, 0,  $lighterGreen, 100%);
         overflow: hidden;
         display: flex;
@@ -114,7 +115,6 @@
                         }
                         ul.acc-list {
                             display: flex;
-
                             li {
                                 overflow: hidden;
                                 a {
@@ -208,12 +208,12 @@
                     }
                     .send-order-btn {
                         width: 255px;
-                        height: 45px;
-                        line-height: 45px;
+                        height: 49px;
+                        line-height: 49px;
                         font-size: 12px;
                         font-family: 'Geometria-Medium';
                         text-transform: uppercase;
-                        letter-spacing: 1.56px;
+                        letter-spacing: 1.6px;
                         border-radius: 24px;
                         text-align: center;
                         cursor: pointer;
@@ -281,8 +281,30 @@
                     box-shadow: 0px 20px 50px 0 rgba(0, 1, 0, 0.18);
                     z-index: 1;
                 }
+                &::after {
+                    position: absolute;
+                    content: url('../img/main/mob/dots.png');
+                    top: -55px;
+                    right: -100px;
+                }
             }
 
+        }
+        .copyright-wrp {
+            position: absolute;
+            @include calc-width(right, 50)
+            @include calc-height(bottom, 39);
+            color: rgb(255, 255, 255);
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: all .5s;
+            p {
+                margin-right: 50px;
+            }
+            &.copyright-show {
+                opacity: 0.4;
+            }
         }
     }
 }
